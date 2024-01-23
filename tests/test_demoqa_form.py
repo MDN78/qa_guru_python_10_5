@@ -1,6 +1,6 @@
 from selene import browser, have, be
 from selene.core import command
-
+import os
 
 def test_demoqa_form():
     browser.open('/')
@@ -10,7 +10,7 @@ def test_demoqa_form():
     browser.element('#gender-radio-1').double_click()
     browser.element('#userNumber').should(be.blank).send_keys('89999876543')
     browser.element('#dateOfBirthInput').perform(command.js.set_value('10 Jan 1980'))
-    browser.element('#uploadPicture').send_keys('C:/Users/Dmitry/Desktop')
+    browser.element('#uploadPicture').send_keys(os.path.abspath('picture.jpg'))
     browser.element("[class='custom-control custom-checkbox custom-control-inline']").click()
     browser.element('#subjectsInput').type('Physics').press_enter()
     browser.element('#currentAddress').send_keys('111999, St Hall avenue 34')
