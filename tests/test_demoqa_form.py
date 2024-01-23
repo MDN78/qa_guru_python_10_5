@@ -2,6 +2,7 @@ from selene import browser, have, be
 from selene.core import command
 import os
 
+
 def test_demoqa_form():
     browser.open('/')
     browser.element('#firstName').should(be.blank).send_keys('Ivan')
@@ -18,4 +19,17 @@ def test_demoqa_form():
     browser.element('#react-select-4-input').type('Delhi').press_enter()
     browser.element('#submit').submit()
     browser.element('#example-modal-sizes-title-lg').should(have.exact_text('Thanks for submitting the form'))
+    browser.element('.table').all('td').should(have.texts(
+        'Ivan Ivanov',
+        'Ivanov@test.com',
+        'Male',
+        '89999876543',
+        '10 Jan 1980',
+        'Physics',
+        'Sports',
+        'picture.jpg',
+        '111999, St Hall avenue 34',
+        'NCR Delhi'
+
+    ))
     browser.element('#closeLargeModal').double_click()
