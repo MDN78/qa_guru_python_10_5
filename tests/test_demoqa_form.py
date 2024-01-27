@@ -36,3 +36,4 @@ def test_demoqa_form():
         'NCR Delhi',
     ))
     browser.element('#closeLargeModal').double_click()
+
