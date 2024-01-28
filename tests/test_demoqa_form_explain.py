@@ -1,6 +1,8 @@
 from selene import browser, have, be, by
 import os
 import time
+from selene.core import command
+
 
 # Стили комментариев:
 # 1) AAA - Arrange, Act, Assert
@@ -34,8 +36,20 @@ def test_student_registration_form():
     male_radio.click()
     '''
     # Так же можем кликнуть по иву выше - это проще не надо писать xpath - указать '..' - это значит на элемент выше
+    # те найти Родителя. "+" - это найти соседа
     male_radio = browser.all('[name=gender]').element_by(have.value('Male')).element('..')
     male_radio.click()
     browser.element('#userNumber').should(be.blank).send_keys('1234567890')
+    # Команда для скролла при маленьком экране с использованием JS
+    browser.element('[for=hobbies-checkbox-2]').perform(command.js.scroll_into_view)
+    # Остановка в DevTools  - заморозка - setTimeout('debugger', 3000)
+    browser.all('[type=checkbox]').element_by(have.value('1')).element('..').click()
+    # Выбор города и штата = id который начинается с ... [id^=react-select] а внутри его есть..
+    # и далее в них ищем по тексту
+    browser.element('#state').click()
+    browser.all('[id^=react-select][id*=option]').element_by(have.exact_text('Haryana')).click()
+
+    browser.element('#city').click()
+    browser.all('[id^=react-select][id*=option]').element_by(have.exact_text('Karnal')).click()
 
     time .sleep(3)
