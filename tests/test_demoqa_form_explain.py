@@ -17,16 +17,25 @@ def test_student_registration_form():
     browser.element('#firstName').should(be.blank).send_keys('Ivan')
     browser.element('#lastName').should(be.blank).send_keys('Ivanov')
     browser.element('#userEmail').should(be.blank).send_keys('Ivanov@test.com')
-    # Так когд более понятен - вводим переменную и селекторы помогают понять что ищем
-    # male_radio = browser.element('[name=gender][value=Male]')
-    # male_radio.double_click()
-    # Так записать правильней и короче - мы понимаем что есть кнопка Гендер - там несколько значений
-    # И среди этих значений выбираем именно Male. Так же разделяя селекторы - при падении и ошибке - проще понять на каком селекторе
-    # споткнулся код:
-    male_radio = browser.all('[name=gender]').element_by(have.value('Male'))
+    # Так когда более понятен - вводим переменную и селекторы помогают понять что ищем
+    '''
+    male_radio = browser.element('[name=gender][value=Male]')
     male_radio.double_click()
+    
+    Другой вариант - тк тут есть перекрытие элемента - тогда не нужен двойной клик:  
+    male_radio = browser.element('[name=gender][value=Male]+label')
+    male_radio.click()
+    
+    Так записать правильней и короче - мы понимаем что есть кнопка Гендер - там несколько значений
+    И среди этих значений выбираем именно Male. Так же разделяя селекторы - при падении и ошибке - проще понять на каком селекторе
+    споткнулся код. Но при разбивке селекторов не получится дописать сиблинга только через Xpath
+    те кликаем на следующий идущий элемент:
+    male_radio = browser.all('[name=gender]').element_by(have.value('Male')).element('./following-sibling::*')
+    male_radio.click()
+    '''
+    # Так же можем кликнуть по иву выше - это проще не надо писать xpath - указать '..' - это значит на элемент выше
+    male_radio = browser.all('[name=gender]').element_by(have.value('Male')).element('..')
+    male_radio.click()
     browser.element('#userNumber').should(be.blank).send_keys('1234567890')
-
-
 
     time .sleep(3)
