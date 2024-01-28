@@ -51,17 +51,22 @@ def test_student_registration_form():
     # через send_keys(или type)- можем отправлять значения в календарь. которые есть в выпадающем списке
     browser.element('.react-datepicker__year-select').send_keys('1980')
     browser.element('.react-datepicker__month-select').send_keys('January')
+    # Решение с f строкой
+    browser.element(f'.react-datepicker__day--0{10}').click()
 
-    browser.element('.react-datepicker__day--010').click()
-
-
+    browser.element('#subjectsInput').type('Physics').press_enter()
 
     # Выбор города и штата = id который начинается с ... [id^=react-select] а внутри его есть..
     # и далее в них ищем по тексту
     browser.element('#state').click()
     browser.all('[id^=react-select][id*=option]').element_by(have.exact_text('Haryana')).click()
-
     browser.element('#city').click()
     browser.all('[id^=react-select][id*=option]').element_by(have.exact_text('Karnal')).click()
+
+    '''
+    Если кнопка не видна - Сабмит - то можно использовать тоже команду JS
+    browser.element('#submit').perform(command.js.click)
+    '''
+
 
     time .sleep(3)
