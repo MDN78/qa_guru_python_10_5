@@ -44,6 +44,18 @@ def test_student_registration_form():
     browser.element('[for=hobbies-checkbox-2]').perform(command.js.scroll_into_view)
     # Остановка в DevTools  - заморозка - setTimeout('debugger', 3000)
     browser.all('[type=checkbox]').element_by(have.value('1')).element('..').click()
+
+    # Календарь
+    browser.element('#dateOfBirthInput').click()
+    # class~=class_name это равно .class - говорит что класс содержит такую надпись, а не строго равно
+    # через send_keys(или type)- можем отправлять значения в календарь. которые есть в выпадающем списке
+    browser.element('.react-datepicker__year-select').send_keys('1980')
+    browser.element('.react-datepicker__month-select').send_keys('January')
+
+    browser.element('.react-datepicker__day--010').click()
+
+
+
     # Выбор города и штата = id который начинается с ... [id^=react-select] а внутри его есть..
     # и далее в них ищем по тексту
     browser.element('#state').click()
