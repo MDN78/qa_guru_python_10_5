@@ -47,7 +47,7 @@ def test_student_registration_form():
 
     # Календарь
     browser.element('#dateOfBirthInput').click()
-    # class~=class_name это равно .class - говорит что класс содержит такую надпись, а не строго равно
+    # `class~=class_name` это равно .class - говорит что класс содержит такую надпись, а не строго равно
     # через send_keys(или type)- можем отправлять значения в календарь. которые есть в выпадающем списке
     browser.element('.react-datepicker__year-select').send_keys('1980')
     browser.element('.react-datepicker__month-select').send_keys('January')
@@ -56,6 +56,7 @@ def test_student_registration_form():
 
     browser.element('#subjectsInput').type('Physics').press_enter()
 
+    browser.element('#uploadPicture').send_keys(os.path.abspath('picture.jpg'))
     # Выбор города и штата = id который начинается с ... [id^=react-select] а внутри его есть..
     # и далее в них ищем по тексту
     browser.element('#state').click()
