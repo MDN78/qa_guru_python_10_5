@@ -56,7 +56,7 @@ def test_student_registration_form():
 
     browser.element('#subjectsInput').type('Physics').press_enter()
 
-    browser.element('#uploadPicture').send_keys(os.path.abspath('picture.jpg'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('resources/picture.jpg'))
     # Выбор города и штата = id который начинается с ... [id^=react-select] а внутри его есть..
     # и далее в них ищем по тексту
     browser.element('#state').click()
@@ -69,5 +69,5 @@ def test_student_registration_form():
     browser.element('#submit').perform(command.js.click)
     '''
 
-
+    browser.element('#submit').submit()
     time .sleep(3)
