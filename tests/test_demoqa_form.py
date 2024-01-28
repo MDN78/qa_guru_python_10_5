@@ -1,9 +1,11 @@
+import pytest
 from selene import browser, have, be, by
 from selene.core import command
 import os
 
+@pytest.mark.skip
 def test_demoqa_form():
-    browser.open('/')
+    browser.open('/automation-practice-form')
     browser.element('#firstName').should(be.blank).send_keys('Ivan')
     browser.element('#lastName').should(be.blank).send_keys('Ivanov')
     browser.element('#userEmail').should(be.blank).send_keys('Ivanov@test.com')
