@@ -18,6 +18,10 @@
 
 ## Краткая шпаргалка по основным командам Selene
 
+Более подробная информация по Selene
+
+[Selene Wiki](https://github.com/MDN78/qa_guru_python_10_5/wiki)
+
 Если добавить строку `browser.config.set_value_by_js = True` - и например прописать это в конфиге вместе с настройками браузера <br>
 то текст будет не пропечатываться по символьно, а вставляться блоком. что ускоряет тест. Например длинный адрес и тд.
 
@@ -62,6 +66,3 @@
 browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.6)"')
 ```
 
-Более подробная информация по Selene
-
-[Selene Wiki](https://github.com/MDN78/qa_guru_python_10_5/wiki)
