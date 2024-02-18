@@ -61,3 +61,7 @@
 ```commandline
 browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.6)"')
 ```
+
+Более подробная информация по Selene
+
+[Selene Wiki](https://github.com/MDN78/qa_guru_python_10_5/wiki)
